@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auctions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #333;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 600px;
+            height: 90vh;
+            padding: 1em;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 1em;
+            color: #fff;
+        }
+
+        .auction-history {
+            background-color: #444;
+            border-radius: 8px;
+            padding: 1em;
+            margin-bottom: 1em;
+            transition: background-color 0.3s ease;
+            overflow-y: auto;
+            max-height: 70vh;
+        }
+
+        .auction-item p {
+            margin: 0.5em 0 0;
+            font-size: 0.9em;
+            color: #bbb;
+        }
+
+        ol {
+            padding-left: 1.5em;
+        }
+
+        li {
+            margin: 0.3em 0;
+            font-size: 1em;
+            color: #ccc;
+        }
+
+        .auctions-list-button {
+            display: inline-block;
+            padding: 0.8em;
+            font-size: 1em;
+            font-weight: bold;
+            color: #fff;
+            background-color: #555;
+            border-radius: 5px;
+            text-decoration: none;
+            text-align: center;
+            transition: background-color 0.3s ease;
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto;
+            cursor: pointer;
+        }
+
+        .auctions-list-button:hover {
+            background-color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Auction {{ auction_id }}</h1>
+        <div class="auction-history">
+            {% for activity_log_per_item in activity_log %}
+                <h3>{{ activity_log_per_item[0] }}</h3>
+                <p><b>{{ activity_log_per_item[1] }}</b></p>
+                <ol>
+                {% for activity in activity_log_per_item %}
+                    {% if loop.index0 > 1 %}
+                        <li>{{ activity }}</li>
+                    {% endif %}
+                {% endfor %}
+                </ol>
+            {% endfor %}
+        </div>
+        <a href="/auctions" class="auctions-list-button">List of auctions</a>
+    </div>
+</body>
+</html>

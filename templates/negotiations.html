@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Negotiations</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #333;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 600px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 1em;
+            color: #fff;
+        }
+
+        .negotiation-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .negotiation-item {
+            background-color: #444;
+            border-radius: 8px;
+            padding: 1em;
+            margin-bottom: 1em;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .negotiation-item:hover {
+            background-color: #555;
+        }
+
+        .negotiation-item p {
+            margin: 0.5em 0 0;
+            font-size: 0.9em;
+            color: #bbb;
+        }
+
+        .negotiation-item a {
+            text-decoration: none;
+        }
+
+        .new-button, .main-menu-button {
+            display: inline-block;
+            padding: 0.8em;
+            font-size: 1em;
+            font-weight: bold;
+            color: #fff;
+            background-color: #555;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 1em;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .new-button:hover, .main-menu-button:hover {
+            background-color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Negotiations</h1>
+        <ul class="negotiation-list">
+            {% for negotiation in negotiations %}
+
+            <li class="negotiation-item">
+                <a href="/negotiation/{{ negotiation.id }}"><p>Negotiation {{ negotiation.id }} | Created At {{ negotiation.created_at }}</p></a>
+            </li>
+
+            {% else %}
+
+            <li>No negotiations found.</li>
+
+            {% endfor %}
+        </ul>
+        <a href="/negotiation/new" class="new-button">New</a>
+        <a href="/" class="main-menu-button">Main Menu</a>
+    </div>
+</body>
+</html>
